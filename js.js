@@ -81,7 +81,8 @@ $(document).ready(function() {
 
 // create start sounds
 var data = [];
-getFreqSweep(data, 5000, $('#el1start').val(), $('#el1end').val());
+getFreqSweep(data, 10000, $('#el1start').val(), $('#el1end').val());
+applySinDistort(data, 1);
 $('<audio />').attr({id: 'el1', src: encodeAudio8bit(data)}).appendTo('#sounds');
 getFreqSweep(data, 5000, $('#el2start').val(), $('#el2end').val());
 $('<audio />').attr({id: 'el2', src: encodeAudio8bit(data)}).appendTo('#sounds');
@@ -101,7 +102,8 @@ $('#modifysounds').click(function() {
 
 function replaceSound(id, startFreq, endFreq) {
   var data = [];
-  getFreqSweep(data, 5000, startFreq, endFreq);
+  getFreqSweep(data, 20000, startFreq, endFreq);
+  applySinDistort(data, 5);
   $('#' + id)[0].pause();
   $('#' + id).detach().attr({src: encodeAudio8bit(data)}).appendTo('#sounds');
   $('#' + id)[0].play();
